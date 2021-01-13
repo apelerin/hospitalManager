@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        HospitalManager hospital;
         Scanner sc = new Scanner(System.in);
         String whatYouGonnaDo = "What do you wanna do?\n1. Access to hospital manager\n2. Play Colossal Cava\n3. Exit.";
         int choice;
@@ -14,7 +15,7 @@ public class Main {
             choice = sc.nextInt();
             switch (choice) {
                 case 1:
-                    HospitalManager m = new HospitalManager();
+                    new HospitalManager().Hospital();
                     break;
                 case 2:
                     //code to go to the game

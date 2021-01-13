@@ -1,0 +1,60 @@
+
+[
+  { "location":
+    {
+      "name": "Road",
+      "index": 0,
+      "description": "You are on a crossroad in the middle of nowhere, sign indicates that you could go to the forest, the hill, a building or into the valley.",
+      "canGoTo": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  { "location":
+    {
+      "name": "Hill",
+      "index": 1,
+      "description": "A green hill with a sheep on it, you can see the forest at the bottom of one side.",
+      "canGoTo": [
+        2
+      ]
+    }
+  },
+
+  { "location":
+    {
+      "name": "Forest",
+      "index": 2,
+      "description": "A calm little forest, are these piglets ? Anyway, you can access to the crossroad you were at the beginning.",
+      "canGoTo": [
+        0
+      ]
+    }
+  },
+
+  { "location":
+    {
+      "name": "Building",
+      "index": 3,
+      "description": "An old red brick building, there are junk all over the place, but there are no other way than the one you came from.",
+      "canGoTo": [
+        0
+      ]
+    }
+  },
+
+  { "location":
+    {
+      "name": "Valley",
+      "index": 4,
+      "description": "A nice valley with a little stream in the middle. It leads right into an hill or you could go back to the crossroad.",
+      "canGoTo": [
+        0,
+        1
+      ]
+    }
+  }
+]

@@ -14,13 +14,13 @@ public class HospitalManager {
             choice = sc.nextInt();
             switch (choice) {
                 case 1:
-                    //Manege Client
+                    new MangeClient().CreateClient();
                     break;
                 case 2:
-                    //Manege Praticiens
+                    new ManagePractient().CreatePractient();
                     break;
                 case 3:
-                    //Manege Rdv
+                    new ManageRdv().CreateRdv();
                 case 4:
                     //Reservation Hostel
                 case 5:

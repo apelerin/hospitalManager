@@ -18,7 +18,7 @@ public class Main {
                     //code to go to the hospital manager
                     break;
                 case 2:
-                    GameInterface game = new GameInterface();
+                    GameManager game = new GameManager();
                     break;
                 case 3:
                     chosen = true;

@@ -2,25 +2,29 @@ package com.company;
 
 import java.util.Scanner;
 
-public class Main {
+public class HospitalManager {
 
-    public static void main(String[] args) {
+    public void Hospital() {
         Scanner sc = new Scanner(System.in);
-        String whatYouGonnaDo = "What do you wanna do?\n1. Access to hospital manager\n2. Play Colossal Cava\n3. Exit.";
+        String HopitalMenu = "What do you wanna do?\n1. Manege Client\n2. Manege praticiens\n3. Manege RDV.\n4.Reservation Hostel\n5.Quit";
         int choice;
-        boolean chosen = false;
-        while (!chosen) {
-            System.out.println(whatYouGonnaDo);
+        boolean menu = false;
+        while (!menu) {
+            System.out.println(HopitalMenu);
             choice = sc.nextInt();
             switch (choice) {
                 case 1:
-                    HospitalManager m = new HospitalManager();
+                    //Manege Client
                     break;
                 case 2:
-                    //code to go to the game
+                    //Manege Praticiens
                     break;
                 case 3:
-                    chosen = true;
+                    //Manege Rdv
+                case 4:
+                    //Reservation Hostel
+                case 5:
+                    menu = true;
                     System.out.println("GoodBye.");
                     break;
                 default:

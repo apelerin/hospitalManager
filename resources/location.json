@@ -28,7 +28,7 @@
     {
       "name": "Forest",
       "index": 2,
-      "description": "A calm little forest, are these piglets ? Anyway, you can access to the crossroad you were at the beginning.",
+      "description": "A calm little forest, are these piglets ? Anyway, you can access to the road you were at the beginning.",
       "canGoTo": [
         0
       ]
@@ -39,7 +39,7 @@
     {
       "name": "Building",
       "index": 3,
-      "description": "An old red brick building, there are junk all over the place, but there are no other way than the one you came from.",
+      "description": "An old red brick building, there are junk all over the place, but there are no other way than the one you came from, the road.",
       "canGoTo": [
         0
       ]
@@ -50,7 +50,7 @@
     {
       "name": "Valley",
       "index": 4,
-      "description": "A nice valley with a little stream in the middle. It leads right into an hill or you could go back to the crossroad.",
+      "description": "A nice valley with a little stream in the middle. It leads right into an hill or you could go back to the road.",
       "canGoTo": [
         0,
         1

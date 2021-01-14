@@ -27,11 +27,24 @@ public class ManageRdv {
 
                     System.out.println("Numero Secu Client :");
                     RDVNumSecu = sc.nextInt();
-                    sc.nextLine();
+                    String s = String.valueOf(RDVNumSecu);
+                    while (s.length() != 13){
+                        System.out.println("le numero securité social n'est pas valide");
+                        System.out.println("Numero Secu Client :");
+                        RDVNumSecu = sc.nextInt();
+                    }
 
                     System.out.println("hours And Date :");
                     RDVHoursAndDate = sc.nextInt();
                     sc.nextLine();
+                    System.out.println(RDVHoursAndDate);
+                    while(RDVHoursAndDate <= 9  || RDVHoursAndDate <= 15){
+                        System.out.println("Les heures de Rdv se deroule entre 9h et 15h\n");
+                        System.out.println("hours And Date :");
+                        RDVHoursAndDate = sc.nextInt();
+                        sc.nextLine();
+                    }
+
 
                     System.out.println("Lieu :");
                     RDVLieu = sc.nextLine();

@@ -6,14 +6,14 @@ public class RoomReservation {
 
     Integer registrationNumberPrac;
     String lastNamePrac;
-    Integer socialSecurityNumberPat;
+    String socialSecurityNumberPat;
     String lastNamePat;
     String infoPat;
     Integer nbOfDays;
     Integer pricePerNight;
     String idRoom;
 
-    public RoomReservation(Integer registrationNumberPrac, String lastNamePrac, Integer socialSecurityNumberPat, String lastNamePat, String infoPat, Integer nbOfDays, String idRoom) {
+    public RoomReservation(Integer registrationNumberPrac, String lastNamePrac, String socialSecurityNumberPat, String lastNamePat, String infoPat, Integer nbOfDays, String idRoom) {
         this.registrationNumberPrac = registrationNumberPrac;
         this.lastNamePrac = lastNamePrac;
         this.socialSecurityNumberPat = socialSecurityNumberPat;
@@ -32,7 +32,7 @@ public class RoomReservation {
         return lastNamePrac;
     }
 
-    public Integer getSocialSecurityNumberPat() {
+    public String getSocialSecurityNumberPat() {
         return socialSecurityNumberPat;
     }
 

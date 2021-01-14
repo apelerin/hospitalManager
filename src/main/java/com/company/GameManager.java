@@ -9,14 +9,19 @@ public class GameManager {
     private Location currentLocation;
     private ArrayList<Integer> previousMoves;
     private String nickname;
+    private GameJSONSaveManager save;
 
     public GameManager() {
         Scanner sc = new Scanner(System.in);
         System.out.println("What is your nickname ?");
         this.setNickname(sc.nextLine());
-        GameJSONSaveManager saveManager = new GameJSONSaveManager(this.getNickname());
+
+        this.setSave(new GameJSONSaveManager(this.getNickname()));
+
         System.out.printf("Welcome %s !\n", this.getNickname());
+
         this.locations = GameJSONParser.loadLocations();
+
         this.setCurrentLocation(locations.get(0));
         System.out.println("You woke up, you don't know where you are, you might want to get around, or stay there, but why would you do that ?");
         System.out.println("You can save your \"progression\" by typing 'S' or leave the game with 'Q'.");
@@ -54,6 +59,10 @@ public class GameManager {
         }
     }
 
+    private void setSave(GameJSONSaveManager save) {
+        this.save = save;
+    }
+
     private void setNickname(String nickname) {
         this.nickname = nickname;
     }
@@ -68,5 +77,9 @@ public class GameManager {
 
     private Location getCurrentLocation() {
         return this.currentLocation;
+    }
+
+    public GameJSONSaveManager getSave() {
+        return save;
     }
 }

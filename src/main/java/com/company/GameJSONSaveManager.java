@@ -8,11 +8,12 @@ import org.json.simple.parser.ParseException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class GameJSONSaveManager {
     private String nickname;
-    private int[] save;
+    private int[] savedLocation;
 
     public GameJSONSaveManager(String nickname) {
         this.setNickname(nickname);
@@ -21,29 +22,35 @@ public class GameJSONSaveManager {
 
     private void readSave() {
 
-        JSONParser parser = new JSONParser();
-        try {
-            Object obj = parser.parse(new FileReader(System.getProperty("user.dir") + "/resources/saveGame.json"));
+        org.json.simple.parser.JSONParser jsonParser = new org.json.simple.parser.JSONParser();
 
-            JSONObject jsonObject = (JSONObject) obj;
-            System.out.println(jsonObject);
+        try (FileReader reader = new FileReader(System.getProperty("user.dir") + "/resources/saveGame.json"))
+        {
+            Object obj = jsonParser.parse(reader);
+            JSONArray listSaves = (JSONArray) obj;
 
-            String name = (String) jsonObject.get("name");
-            System.out.println(name);
-
-            long age = (Long) jsonObject.get("age");
-            System.out.println(age);
-
-            //loop array
-            JSONArray msg = (JSONArray) jsonObject.get("messages");
-            Iterator<String> iterator = msg.iterator();
-            while (iterator.hasNext()) {
-                System.out.println(iterator.next());
-            }
+            listSaves.forEach( save -> {
+                if(isPlayer((JSONObject) save)) {
+                    setTheSave((JSONObject) save);
+                    return;
+                }
+            });
+            // TODO create new save there
 
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
+    }
+
+    // Method to save
+
+    private boolean isPlayer(JSONObject save) {
+        String nickToTest = (String) save.get("nickname");
+        return nickToTest.equalsIgnoreCase(this.getNickname());
+    }
+
+    private void setTheSave(JSONObject save) {
+        this.savedLocation = GameJSONParser.jsonArrayToIntArray((JSONArray) save.get("savedLocations"));
     }
 
     private void setNickname(String nickname) {

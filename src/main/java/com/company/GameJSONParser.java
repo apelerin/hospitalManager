@@ -44,7 +44,7 @@ public class GameJSONParser {
         return new Location(name, description, canGoTo, (int)index);
     }
 
-    private static int[] jsonArrayToIntArray(JSONArray json) {
+    public static int[] jsonArrayToIntArray(JSONArray json) {
         int[] results = new int[json.size()];
         String stringJson = json.toJSONString();
         String[] items = stringJson.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("\\s", "").split(",");

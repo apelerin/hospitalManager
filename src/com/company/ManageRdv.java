@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ManageRdv {
-    private List<Patient> PatientList = new ArrayList();
+    private List<HospitalRdv> RdvList = new ArrayList();
 
     public void CreateRdv(){
         Scanner sc = new Scanner(System.in);
@@ -37,13 +37,13 @@ public class ManageRdv {
                     RDVLieu = sc.nextLine();
 
 
-//                    Patient patient = new Patient(ClientName,ClientFirstName, ClientNumeroSecu, ClientAdresse, ClientNumeroTel, ClientAdresseMail );
-//                    PatientList.add(patient);
+                    HospitalRdv RdvClient = new HospitalRdv(RDVMatriculePractien, RDVNumSecu, RDVHoursAndDate, RDVLieu);
+                    RdvList.add(RdvClient);
                     break;
                 case 2:
-                    for(Patient patients : PatientList){
-                        System.out.println("Matricule Praticien :"+patients.getLastName()+" Numero Secu Client :"+patients.getFirstName()+
-                                " hours And Date :"+patients.getSocialSecurityNumber()+" Lieu :"+patients.getAddress());
+                    for(HospitalRdv client : RdvList){
+                        System.out.println("Matricule Praticien :"+client.getMatriculePractien()+" Numero Secu Client :"+client.getNumSecu()+
+                                " hours And Date :"+client.getHoursAndDate()+" Lieu :"+client.getLieu());
                     }
                     break;
                 case 3:

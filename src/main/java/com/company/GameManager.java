@@ -23,7 +23,7 @@ public class GameManager {
             System.out.println("Where do you want to go ?");
             choice = sc.nextLine();
             boolean isFound;
-            if (choice.equals("Q")) {
+            if (choice.equalsIgnoreCase("Q")) {
                 gameIsOn = false;
             } else {
                 isFound = false;
@@ -42,7 +42,6 @@ public class GameManager {
                 }
             }
         }
-        sc.close();
     }
 
     private void setCurrentLocation(Location loc) {

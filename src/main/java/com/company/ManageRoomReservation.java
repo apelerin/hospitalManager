@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class ManageRoomReservation {
 
@@ -47,22 +48,70 @@ public class ManageRoomReservation {
     }
 
     public static void doReservation(Hospital hospital){
-        System.out.println("Practitioner registration number ?");
-        Integer registrationNumber = scan.nextInt();
-        System.out.println("Practitioner last name ?");
-        String pracLastName = scan.next();
-        System.out.println("Your social security number ?");
-        Integer socialSecurityNumber = scan.nextInt();
-        System.out.println("Your last name ?");
-        String patLastName = scan.next();
+        boolean isGoodFormat;
+        String registrationNumber;
+        String pracLastName;
+        String socialSecurityNumber;
+        String patLastName;
+        String info;
+        String nbDays;
+
+        do {
+            System.out.println("Practitioner registration number ?");
+            registrationNumber = scan.next();
+            isGoodFormat = Pattern.matches("^\\d+$", registrationNumber);
+            if (!isGoodFormat){
+                System.out.println("Wrong format of registration number (only digits)");
+            }
+        }
+        while (!isGoodFormat);
+
+        do {
+            System.out.println("Practitioner last name ?");
+            pracLastName = scan.next();
+            isGoodFormat = Pattern.matches("^[a-zA-Z]+$", pracLastName);
+            if (!isGoodFormat){
+                System.out.println("Only letters for names");
+            }
+        }
+        while (!isGoodFormat);
+
+        do {
+            System.out.println("Your social security number ?");
+            socialSecurityNumber = scan.next();
+            isGoodFormat = Pattern.matches("^\\d{13}+$", socialSecurityNumber);
+            if (!isGoodFormat){
+                System.out.println("Wrong format of social security number (13 digits)");
+            }
+        }
+        while (!isGoodFormat);
+
+        do{
+            System.out.println("Your last name ?");
+            patLastName = scan.next();
+            isGoodFormat = Pattern.matches("^[a-zA-Z]+$", patLastName);
+            if (!isGoodFormat){
+                System.out.println("Only letters for names");
+            }
+        }
+        while (!isGoodFormat);
+
         System.out.println("more information ?");
-        String info = scan.next();
-        System.out.println("Number of days ?");
-        Integer nbDays = scan.nextInt();
+        info = scan.next();
+
+        do {
+            System.out.println("Number of days ?");
+            nbDays = scan.next();
+            isGoodFormat = Pattern.matches("^\\d+$", nbDays);
+            if (!isGoodFormat){
+                System.out.println("Wrong format of days (only digits)");
+            }
+        }
+        while (!isGoodFormat);
 
         Room roomReserved = hospital.getAvailableRoom();
 
-        RoomReservation resa = new RoomReservation(registrationNumber, pracLastName, socialSecurityNumber, patLastName, info, nbDays, roomReserved.getIdRoom());
+        RoomReservation resa = new RoomReservation(Integer.parseInt(registrationNumber), pracLastName, socialSecurityNumber, patLastName, info, Integer.parseInt(nbDays), roomReserved.getIdRoom());
 
         roomReserved.setReserved(true);
         System.out.println("Your room : " + roomReserved.getIdRoom());

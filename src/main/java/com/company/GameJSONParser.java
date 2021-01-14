@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class JSONParser {
+public class GameJSONParser {
 
     static HashMap<Integer, Location> loadLocations() {
 

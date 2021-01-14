@@ -39,8 +39,7 @@ public class ManageRoomReservation {
                 createRoomReservation();
                 break;
             case 5:
-                // rappeler le main
-                Exit();
+                return;
             default:
                 System.out.println("Choice is not available.");
         }
@@ -124,9 +123,4 @@ public class ManageRoomReservation {
             }
         }
     }
-
-    private static void Exit() {
-        System.exit(1);
-    }
-
 }

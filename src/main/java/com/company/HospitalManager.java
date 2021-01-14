@@ -22,7 +22,7 @@ public class HospitalManager {
                 case 3:
                     new ManageRdv().CreateRdv();
                 case 4:
-                    //Reservation Hostel
+                    new ManageRoomReservation().createRoomReservation();
                 case 5:
                     menu = true;
                     System.out.println("GoodBye.");

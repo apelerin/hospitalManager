@@ -16,7 +16,6 @@ public class Main {
             choice = sc.nextInt();
             switch (choice) {
                 case 1:
-                    new ManageRoomReservation().createRoomReservation();
                     new HospitalManager().Hospital();
                     break;
                 case 2:

@@ -6,6 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         //myHospital.displayRooms();
+        HospitalManager hospital;
         String whatYouGonnaDo = "What do you wanna do?\n1. Access to hospital manager\n2. Play Colossal Cava\n3. Exit.";
         int choice;
         Scanner sc = new Scanner(System.in);
@@ -16,6 +17,7 @@ public class Main {
             switch (choice) {
                 case 1:
                     new ManageRoomReservation().createRoomReservation();
+                    new HospitalManager().Hospital();
                     break;
                 case 2:
                     GameManager game = new GameManager();

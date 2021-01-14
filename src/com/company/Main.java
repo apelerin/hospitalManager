@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        //myHospital.displayRooms();
         Scanner sc = new Scanner(System.in);
         String whatYouGonnaDo = "What do you wanna do?\n1. Access to hospital manager\n2. Play Colossal Cava\n3. Exit.";
         int choice;
@@ -17,7 +18,7 @@ public class Main {
                     //code to go to the hospital manager
                     break;
                 case 2:
-                    //code to go to the game
+                    new ManageRoomReservation().createRoomReservation();
                     break;
                 case 3:
                     chosen = true;
@@ -29,4 +30,5 @@ public class Main {
             }
         }
     }
+
 }

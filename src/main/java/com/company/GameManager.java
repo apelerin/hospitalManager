@@ -34,7 +34,8 @@ public class GameManager {
             boolean isFound;
             if (choice.equalsIgnoreCase("Q")) {
                 gameIsOn = false;
-
+            } else if (choice.equalsIgnoreCase("S")) {
+                this.save.saveToJson();
             } else {
                 isFound = false;
                 for(Map.Entry<Integer, Location> entry : locations.entrySet()) {
@@ -48,6 +49,7 @@ public class GameManager {
                     }
                     if(choice.equalsIgnoreCase(value.getName()) && Arrays.stream(this.getCurrentLocation().getCanGoTo()).anyMatch(i -> i == key)) {
                         this.setCurrentLocation(value);
+                        this.save.addToSave(value.getIndex());
                         isFound = true;
                         break;
                     }

@@ -14,7 +14,7 @@ import java.util.Iterator;
 
 public class GameJSONSaveManager {
     private String nickname;
-    private ArrayList<Integer> savedLocation;
+    public ArrayList<Integer> savedLocation;
     private JSONObject player;
     private JSONArray players;
     private boolean playerAlreadyExist = false;

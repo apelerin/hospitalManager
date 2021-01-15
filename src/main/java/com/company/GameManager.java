@@ -24,7 +24,7 @@ public class GameManager {
 
         this.setCurrentLocation(locations.get(0));
         System.out.println("You woke up, you don't know where you are, you might want to get around, or stay there, but why would you do that ?");
-        System.out.println("You can save your \"progression\" by typing 'S' or leave the game with 'Q'.");
+        System.out.println("You can save your \"progression\" by typing 'S', see where you have been with 'J' or leave the game with 'Q'.");
         boolean gameIsOn = true;
         String choice;
         while(gameIsOn) {
@@ -36,7 +36,9 @@ public class GameManager {
                 gameIsOn = false;
             } else if (choice.equalsIgnoreCase("S")) {
                 this.save.saveToJson();
-            } else {
+            } else if (choice.equalsIgnoreCase("J")) {
+                this.displayVisitedLocations();
+            }else {
                 isFound = false;
                 for(Map.Entry<Integer, Location> entry : locations.entrySet()) {
                     Integer key = entry.getKey();
@@ -58,6 +60,13 @@ public class GameManager {
                     System.out.println("Either the place you want to go doesn't exist or is not accessible from here.");
                 }
             }
+        }
+    }
+
+    private void displayVisitedLocations() {
+        System.out.println("You have been to these places: ");
+        for (Integer index: this.save.savedLocation) {
+            System.out.println(this.locations.get(index).getName());
         }
     }
 

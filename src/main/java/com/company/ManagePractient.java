@@ -3,6 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class ManagePractient {
     private List<Practitioner> PractitionerList = new ArrayList();
@@ -10,13 +11,14 @@ public class ManagePractient {
     public void CreatePractient(){
         Scanner sc = new Scanner(System.in);
         String PractientMenu = "What do you wanna do?\n1. Créate Practient\n2. List of Practitioner\n3. Quit";
+        boolean isGoodFormat;
         int choice;
         String PractientName;
         String PractientFirstName;
-        int PractientregistrationNumber;
+        String PractientregistrationNumber;
         String Practientspeciality;
         String Practientrank;
-        int PractienthourlyRate;
+        String PractienthourlyRate;
         boolean menu = false;
         while (!menu) {
             System.out.println(PractientMenu);
@@ -24,28 +26,67 @@ public class ManagePractient {
             sc.nextLine();
             switch (choice) {
                 case 1:
-                    System.out.println("Name :");
-                    PractientName = sc.nextLine();
+                    do {
+                        System.out.println("Name :");
+                        PractientName = sc.nextLine();
+                        isGoodFormat = Pattern.matches("^[a-zA-Z]+$",PractientName );
+                        if (!isGoodFormat){
+                            System.out.println("Only letters for names");
+                        }
+                    }
+                    while (!isGoodFormat);
 
-                    System.out.println("FirstName :");
-                    PractientFirstName = sc.nextLine();
+                    do {
+                        System.out.println("FirstName :");
+                        PractientFirstName = sc.nextLine();
+                        isGoodFormat = Pattern.matches("^[a-zA-Z]+$",PractientFirstName );
+                        if (!isGoodFormat){
+                            System.out.println("Only letters for Firstname");
+                        }
+                    }
+                    while (!isGoodFormat);
 
+                    do {
                     System.out.println("Registration Number :");
-                    PractientregistrationNumber = sc.nextInt();
-                    sc.nextLine();
+                    PractientregistrationNumber = sc.nextLine();
+                    isGoodFormat = Pattern.matches("^\\d+$", PractientregistrationNumber);
+                        if (!isGoodFormat){
+                            System.out.println("Only number for Register Number");
+                        }
+                    }
+                    while (!isGoodFormat);
 
+                    do {
                     System.out.println("Speciality :");
                     Practientspeciality = sc.nextLine();
+                        isGoodFormat = Pattern.matches("^[a-zA-Z]+$", Practientspeciality);
+                        if (!isGoodFormat){
+                            System.out.println("Only letters for Speciality");
+                        }
+                    }
+                    while (!isGoodFormat);
 
+                    do {
                     System.out.println("Rank :");
                     Practientrank = sc.nextLine();
+                        isGoodFormat = Pattern.matches("^[a-zA-Z]+$", Practientrank);
+                        if (!isGoodFormat){
+                            System.out.println("Only letters for Rank");
+                        }
+                    }
+                    while (!isGoodFormat);
 
-
+                    do {
                     System.out.println("Hourly Rate :");
-                    PractienthourlyRate = sc.nextInt();
-                    sc.nextLine();
+                    PractienthourlyRate = sc.nextLine();
+                        isGoodFormat = Pattern.matches("^\\d+$", PractienthourlyRate);
+                        if (!isGoodFormat){
+                            System.out.println("Only Number for Hourly Rate");
+                        }
+                    }
+                    while (!isGoodFormat);
 
-                    Practitioner practient = new Practitioner(PractientName,PractientFirstName, PractientregistrationNumber, Practientspeciality, Practientrank, PractienthourlyRate );
+                    Practitioner practient = new Practitioner(PractientName,PractientFirstName, Integer.parseInt(PractientregistrationNumber), Practientspeciality, Practientrank, Integer.parseInt(PractienthourlyRate ));
                     PractitionerList.add(practient);
                     break;
                 case 2:

@@ -1,12 +1,12 @@
 package com.company;
 
 public class HospitalRdv {
-    String MatriculePractien;
+    Integer MatriculePractien;
     Integer NumSecu;
     Integer HoursAndDate;
     String Lieu;
 
-    public HospitalRdv(String matriculePractien, Integer numSecu, Integer hoursAndDate, String lieu) {
+    public HospitalRdv(Integer matriculePractien, Integer numSecu, Integer hoursAndDate, String lieu) {
         MatriculePractien = matriculePractien;
         NumSecu = numSecu;
         HoursAndDate = hoursAndDate;
@@ -14,7 +14,7 @@ public class HospitalRdv {
     }
 
 
-    public String getMatriculePractien() {
+    public Integer getMatriculePractien() {
         return MatriculePractien;
     }
 

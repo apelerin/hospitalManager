@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class MangeClient {
     private List<Patient> PatientList = new ArrayList();
@@ -13,11 +14,12 @@ public class MangeClient {
         Scanner sc = new Scanner(System.in);
         String ClientMenu = "What do you wanna do?\n1. Créate clients\n2. List of client\n3. Quit";
         int choice;
+        boolean isGoodFormat;
         String ClientName;
         String ClientFirstName;
         String ClientAdresse;
         String ClientNumeroTel;
-        int ClientNumeroSecu;
+        String ClientNumeroSecu;
         String ClientAdresseMail;
         boolean menu = false;
         while (!menu) {
@@ -26,26 +28,68 @@ public class MangeClient {
             sc.nextLine();
             switch (choice) {
                 case 1:
+
+                    do {
                     System.out.println("Name :");
                     ClientName = sc.nextLine();
+                    isGoodFormat = Pattern.matches("^[a-zA-Z]+$", ClientName);
+                        if (!isGoodFormat){
+                            System.out.println("Only letter for Name");
+                        }
+                    }
+                    while (!isGoodFormat);
 
+                    do {
                     System.out.println("FirstName :");
                     ClientFirstName = sc.nextLine();
+                    isGoodFormat = Pattern.matches("^[a-zA-Z]+$", ClientFirstName);
+                        if (!isGoodFormat){
+                            System.out.println("Only letter for FirstName");
+                        }
+                    }
+                    while (!isGoodFormat);
 
+                    do {
                     System.out.println("Adresse :");
                     ClientAdresse = sc.nextLine();
+                        isGoodFormat = Pattern.matches("^[a-zA-Z]+$", ClientAdresse);
+                        if (!isGoodFormat){
+                            System.out.println("Only letter for Adress");
+                        }
+                    }
+                    while (!isGoodFormat);
 
+                    do {
                     System.out.println("numeroDeTel :");
                     ClientNumeroTel = sc.nextLine();
+                    isGoodFormat = Pattern.matches("^\\d+$", ClientNumeroTel);
+                    if (!isGoodFormat){
+                        System.out.println("Only Number for numberTel");
+                        }
+                    }
+                    while (!isGoodFormat);
 
+                    do {
                     System.out.println("Numero de secu :");
-                    ClientNumeroSecu = sc.nextInt();
-                    sc.nextLine();
+                    ClientNumeroSecu = sc.nextLine();
+                    isGoodFormat = Pattern.matches("^\\d+$", ClientNumeroSecu);
+                    if (!isGoodFormat){
+                        System.out.println("Only Number for Numbersecu");
+                        }
+                    }
+                    while (!isGoodFormat);
 
+                    do{
                     System.out.println("Adresse Mail :");
                     ClientAdresseMail = sc.nextLine();
+                    isGoodFormat = Pattern.matches("^[a-zA-Z]+$", ClientAdresseMail);
+                    if (!isGoodFormat){
+                        System.out.println("Only letter for adress Mail");
+                        }
+                    }
+                    while (!isGoodFormat);
 
-                    Patient patient = new Patient(ClientName,ClientFirstName, ClientNumeroSecu, ClientAdresse, ClientNumeroTel, ClientAdresseMail );
+                    Patient patient = new Patient(ClientName,ClientFirstName, Integer.parseInt(ClientNumeroSecu), ClientAdresse, ClientNumeroTel, ClientAdresseMail );
                     PatientList.add(patient);
                     break;
                 case 2:

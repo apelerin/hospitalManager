@@ -1,12 +1,15 @@
 package com.company;
 
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 public class HospitalManager {
 
-    public void Hospital() {
+    public void Hospital() throws IOException, ParseException {
         Scanner sc = new Scanner(System.in);
-        String HopitalMenu = "What do you wanna do?\n1. Manege Client\n2. Manege praticiens\n3. Manege RDV.\n4.Reservation Hostel\n5.Quit";
+        String HopitalMenu = "What do you wanna do?\n1. Manage Client\n2. Manage practitioners\n3. Manage RDV.\n4. Manage Room Reservation\n5.Quit";
         int choice;
         boolean menu = false;
         while (!menu) {

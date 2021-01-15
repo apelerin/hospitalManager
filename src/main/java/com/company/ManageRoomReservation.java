@@ -1,18 +1,28 @@
 package com.company;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+
 public class ManageRoomReservation {
 
     public static List<RoomReservation> listReservations = new ArrayList<>();
     public static Hospital myHospital = new Hospital("quimper", 8, 20);
+    public static JSONParser jsonParser = new JSONParser();
 
     private static Scanner scan = new Scanner(System.in);
-    public void createRoomReservation(){
+    public void createRoomReservation() throws IOException, ParseException {
+        uploadReservations();
+
         int choice;
         String menu = "What do you want to do ?\n" +
                 "1. Reserve room\n" +
@@ -47,7 +57,7 @@ public class ManageRoomReservation {
 
     }
 
-    public static void doReservation(Hospital hospital){
+    public static void doReservation(Hospital hospital) throws IOException {
         boolean isGoodFormat;
         String registrationNumber;
         String pracLastName;
@@ -120,6 +130,8 @@ public class ManageRoomReservation {
 
         resa.generateInvoice();
 
+        writeInJson();
+
     }
 
     public static void displayReservations(List<RoomReservation> list) {
@@ -133,7 +145,7 @@ public class ManageRoomReservation {
         }
     }
 
-    public static void deleteReservation(List<RoomReservation> list) {
+    public static void deleteReservation(List<RoomReservation> list) throws IOException, ParseException {
         if (list.isEmpty()){
             System.out.println("No reservation");
         }
@@ -143,6 +155,7 @@ public class ManageRoomReservation {
             for (RoomReservation resa:list){
                 System.out.println("----   Index : " + index + "   ----");
                 resa.generateInvoice();
+                index++;
             }
             Integer choice = scan.nextInt();
 
@@ -161,6 +174,8 @@ public class ManageRoomReservation {
                 case "y":
                     list.remove(resaChoosed);
                     searchRoom.setReserved(false);
+                    listReservations.remove(resaChoosed);
+                    writeInJson();
                     break;
                 case "n":
                     System.out.println("no delete");
@@ -170,6 +185,44 @@ public class ManageRoomReservation {
                     System.out.println("Not recognize");
                     deleteReservation(list);
             }
+        }
+    }
+    public static void writeInJson() throws IOException {
+
+        JSONArray resaList = new JSONArray();
+        for (RoomReservation resa:listReservations)
+        {
+            JSONObject resaJson = new JSONObject();
+            resaJson.put("registration_number_prac", resa.getRegistrationNumberPrac().toString());
+            resaJson.put("last_name_prac", resa.getLastNamePrac());
+            resaJson.put("social_security_number", resa.getSocialSecurityNumberPat());
+            resaJson.put("last_name_pat", resa.getLastNamePat());
+            resaJson.put("info_pat", resa.getInfoPat());
+            resaJson.put("nb_of_days", resa.getNbOfDays().toString());
+            resaJson.put("price_per_night", resa.getPricePerNight());
+            resaJson.put("idRoom", resa.getIdRoom());
+
+            resaList.add(resaJson);
+        }
+
+        FileWriter file = new FileWriter("dataReservations.json");
+        file.write(resaList.toString());
+        file.flush();
+    }
+    public static void uploadReservations() throws IOException, ParseException {
+        JSONArray jsonArray = (JSONArray) jsonParser.parse(new FileReader("dataReservations.json"));
+
+        for (Object o:jsonArray){
+            JSONObject obj = (JSONObject) o;
+            String regis = (String) obj.get("registration_number_prac");
+            String lastNamePrac = (String) obj.get("last_name_prac");
+            String security = (String)  obj.get("social_security_number");
+            String lastNamePat = (String) obj.get("last_name_pat");
+            String info =(String)  obj.get("info_pat");
+            String days = (String) obj.get("nb_of_days");
+            String id = (String)  obj.get("idRoom");
+            RoomReservation resa = new RoomReservation(Integer.parseInt(regis), lastNamePrac, security, lastNamePat, info, Integer.parseInt(days), id);
+            listReservations.add(resa);
         }
     }
 }

@@ -1,10 +1,13 @@
 package com.company;
 
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ParseException {
         //myHospital.displayRooms();
         HospitalManager hospital;
         String whatYouGonnaDo = "What do you wanna do?\n1. Access to hospital manager\n2. Play Colossal Cava\n3. Exit.";
